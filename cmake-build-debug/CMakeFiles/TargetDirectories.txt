@@ -1,0 +1,6 @@
+/Users/sergei/Ultra/challenge/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/sergei/Ultra/challenge/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sergei/Ultra/challenge/cmake-build-debug/CMakeFiles/challenge.dir
+/Users/sergei/Ultra/challenge/cmake-build-debug/unit-test/CMakeFiles/rebuild_cache.dir
+/Users/sergei/Ultra/challenge/cmake-build-debug/unit-test/CMakeFiles/edit_cache.dir
+/Users/sergei/Ultra/challenge/cmake-build-debug/unit-test/CMakeFiles/cmake_testapp_boost.dir
