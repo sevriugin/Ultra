@@ -39,7 +39,7 @@ void remove_all_bigger_or_equal(uint64_t T, std::vector<uint64_t> &I) {
 /**
  * Find one solution for problem: find subset `M` of vector `I` with sum of elements `M` nearest target `T`
  * @param T target to find
- * @param I array of elements
+ * @param I array of elements (ascending ordered)
  * @param M resulting subset
  * @param S resulting sum
  */

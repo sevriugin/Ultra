@@ -23,6 +23,10 @@ namespace bdata = boost::unit_test::data;
 const auto Underflow = "Underflow";
 const auto Overflow = "Overflow";
 
+/**
+ * Get Bitwise add challenge test data from the test.txt file and convert it to string vector for `BOOST_DATA_TEST_CASE`
+ * @return vector of test strings
+ */
 std::vector<std::string> getAddChallengeTestData() {
     using namespace std;
     using namespace boost;
@@ -34,7 +38,10 @@ std::vector<std::string> getAddChallengeTestData() {
 
     return splitString(data,  (char[]) {"\n"});
 }
-
+/**
+ * get Find largest sum challenge test data from the file and convert it to the string vector for `BOOST_DATA_TEST_CASE`
+ * @return vector of test strings
+ */
 std::vector<std::string> getFindLargestSumChallengeTestData() {
     using namespace std;
     using namespace boost;
@@ -65,23 +72,39 @@ std::vector<std::string> getFindLargestSumChallengeTestData() {
     return result;
 }
 
-
+/**
+ * Get vector of test arguments from test string
+ * @param test_string
+ * @return vector of test arguments
+ */
 std::vector<std::string> getTestArguments(std::string test_string) {
     return splitString(test_string,  (char[]) {" "});
 }
 
+/**
+ * Check if exception has `Underflow` message
+ * @param ex exception to check
+ * @return `true` if exception what method returns `Underflow` message
+ */
 bool correctUnderflowMessage(const std::runtime_error& ex)
 {
     BOOST_CHECK_EQUAL(ex.what(), std::string(Underflow));
     return true;
 }
-
+/**
+ * Check if exception has `Overflow` message
+ * @param ex exception to check
+ * @return `true` if exception what method returns `Overflow` message
+ */
 bool correctOverflowMessage(const std::runtime_error& ex)
 {
     BOOST_CHECK_EQUAL(ex.what(), std::string(Overflow));
     return true;
 }
 
+/**
+ * Boost tests for Bitwise Add challenge
+ */
 BOOST_DATA_TEST_CASE(
         bitwise_add_test,
         bdata::make(getAddChallengeTestData()),
@@ -94,6 +117,7 @@ BOOST_DATA_TEST_CASE(
     string stringResult { isNumber(testArguments[2]) ? "" : testArguments[2] };
 
     cout << "-- bitwise add challenge -- " << endl;
+    cout << "   " << a << " + " << b << " --> " << stringResult << testArguments[2] << endl;
 
     if (stringResult == Overflow) {
         BOOST_CHECK_EXCEPTION(add(a, b), std::runtime_error, correctOverflowMessage);
@@ -105,6 +129,9 @@ BOOST_DATA_TEST_CASE(
     }
 }
 
+/**
+ * Boost tests for the find largest sum challenge
+ */
 BOOST_DATA_TEST_CASE(
         find_largest_sum_test,
         bdata::make(getFindLargestSumChallengeTestData()),
@@ -113,6 +140,7 @@ BOOST_DATA_TEST_CASE(
     using namespace std;
 
     cout << "-- find largest sum challenge -- " << endl;
+
     vector<string> testArguments = getTestArguments(test_string);
 
     uint64_t T { (uint64_t) getNumber(*testArguments.begin()) };
@@ -127,11 +155,11 @@ BOOST_DATA_TEST_CASE(
 
     find_largest_sum(T, I, M, S);
 
-    cout << "Result Set (M): ";
+    cout << "   T: " << T << "  M: ";
 
     for_each(M.begin(), M.end(), [](uint64_t n) { cout << n << " "; });
 
-    cout << endl;
+    cout << " S: " << S << endl;
 
     BOOST_TEST(S == expectedS);
 }
